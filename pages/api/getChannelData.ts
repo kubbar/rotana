@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     const page = await browser.newPage()
-    page.setDefaultNavigationTimeout(20000) // 20 ثانية
+    page.setDefaultNavigationTimeout(30000) // 20 ثانية
 
     await page.setRequestInterception(true)
     page.on('request', (request) => {
@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await page.goto(`https://rotana.net/ar/channels/#/live/${channel}`, {
       waitUntil: 'domcontentloaded', // تحسين سرعة التحميل
-      timeout: 20000 // 20 ثانية
+      timeout: 30000 // 20 ثانية
     })
 
     streamingLink = await streamingLinkPromise
