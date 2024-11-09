@@ -13,8 +13,8 @@ export const getServerSideProps: GetServerSideProps<ChannelPageProps> = async (c
   }
 
   try {
-    const apiUrl = `https://rotana.kubbar.workers.dev`
-    const res = await fetch(`${apiUrl}?channel=${channel}`)
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || `https://${context.req.headers.host}`
+    const res = await fetch(`${apiUrl}/api/getChannelData?channel=${channel}`)
     const data = await res.json()
 
     return { props: { streamingLink: data.streamingLink || null } }
